@@ -48,6 +48,12 @@
 		}
 	}
 
+	handle /live/* {
+		reverse_proxy {$LIVE_ENDPOINT} {
+			header_up Host {upstream_hostport}
+		}
+	}
+
 	handle /{$BUCKET_NAME}/* {
 		reverse_proxy {$BUCKET_ENDPOINT} {
 			header_up Host {upstream_hostport}
